@@ -1,4 +1,5 @@
 #!/bin/bash
+### install the necessary environment for this zappa deployment
 
 python3.8 --version &> /dev/null
 
