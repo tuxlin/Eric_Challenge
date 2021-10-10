@@ -1,6 +1,6 @@
-# SecNet Challenge\
+# SecNet Challenge
 
-### Infrastructure\
+### Infrastructure
 
 
 Description: Create and deploy a running instance of a web server using a configuration management tool of your
