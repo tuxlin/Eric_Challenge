@@ -1,12 +1,12 @@
-# Serverless Static Website Automated Deployment with Zappa
+# Serverless Website Automated Deployment with [Zappa](https://github.com/zappa/Zappa)
 
 ## Goals
 - [x] Only necessary ports are exposed
 - [x] Redirect to https
 - [x] SSL Certificate(self-signed ok)
 - [x] Automated deployment
-- [x] ~Validate server config~ no server to configure
-- [x] Express everything as code
+- [x] ~~Validate server config~~ no server to configure
+- [x] ~~Express everything as code~~ Zappa handles the creation of the infrastructure
 - [x] Commit to a github repo
 
 ## Scalability
@@ -16,11 +16,15 @@
 
 ## Monitoring
 * API Gateway allows you to monitor application latency and status codes returned to users.
-* AWS Config can be monitor for changes to the deployed resources
+* AWS Config can monitor for changes to the deployed resources.
 
 ## Setup
 1. Make sure you have [Python3.8](https://www.python.org/downloads/release/python-3810/) installed.
 2. Clone this repo and change into the project directory.
+```
+git clone https://github.com/tuxlin/Eric_Challenge.git
+cd Eric_Challenge
+```
 3. Execute the [setup.sh](https://github.com/tuxlin/Eric_Challenge/blob/main/setup.sh) script to create and setup the python3.8 virtualenv with the necessary python packages in [requirements.in](https://github.com/tuxlin/Eric_Challenge/blob/main/requirements.in).
 ```
 bash setup.sh
@@ -37,12 +41,12 @@ zappa init
 ```
 zappa deploy <stage-name>
 ```
-7. View the web app by visiting the link provided by the output of zappa deploy
+7. View the web app by visiting the link provided by the output of zappa deploy.
 8. You can make changes to the local [app.py](https://github.com/tuxlin/Eric_Challenge/blob/main/app.py) to add additional routes or [index.tpl](https://github.com/tuxlin/Eric_Challenge/blob/main/templates/index.tpl) template and update your changes.
 ```
 zappa update <stage-name>
 ```
-8. Finally, you may delete the deployment.
+9. Finally, you may delete the deployment.
 ```
 zappa undeploy <stage-name>
 ```
