@@ -5,8 +5,8 @@
 - [x] Redirect to https
 - [x] SSL Certificate(self-signed ok)
 - [x] Automated deployment
-- [x] ~~Validate server config~~ no server to configure
-- [x] ~~Express everything as code~~ Zappa handles the creation of the infrastructure
+- [x] ~~Validate server config~~ _no server to configure_
+- [x] ~~Express everything as code~~ _Zappa handles the creation of the infrastructure_
 - [x] Commit to a github repo
 
 ## Scalability
