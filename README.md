@@ -1,36 +1,52 @@
-# SecNet Challenge
+# Serverless Static Website Automated Deployment with Zappa
 
-## Infrastructure
+## Goals
+- [x] Only necessary ports are exposed
+- [x] Redirect to https
+- [x] SSL Certificate(self-signed ok)
+- [x] Automated deployment
+- [x] ~Validate server config~ no server to configure
+- [x] Express everything as code
+- [x] Commit to a github repo
 
-For this project, please think about how you would architect a secure and scalable static web application in
-AWS.
+## Scalability
+* Zappa can deploy a web app to any region or to AWS Global CDN.
+* The serverless architecture of Lambda and API Gateway automatically handles scalability within the deployed region(s).
+* Route53 and the available routing policies can be used to route traffic to your sites depending on what best suits your deployment. 
 
-* Create and deploy a running instance of a web server using a configuration management tool of your
-choice. The web server should serve one page with the following content:
+## Monitoring
+* API Gateway allows you to monitor application latency and status codes returned to users.
+* AWS Config can be monitor for changes to the deployed resources
 
+## Setup
+1. Make sure you have [Python3.8](https://www.python.org/downloads/release/python-3810/) installed.
+2. Clone this repo and change into the project directory.
+3. Execute the [setup.sh](https://github.com/tuxlin/Eric_Challenge/blob/main/setup.sh) script to create and setup the python3.8 virtualenv with the necessary python packages in [requirements.in](https://github.com/tuxlin/Eric_Challenge/blob/main/requirements.in).
 ```
-<html>
-  <head>
-    <title>We are SecNet!</title>
-  </head>
-  <body>
-    <h1>We are SecNet!</h1>
-  </body>
-</html>
+bash setup.sh
 ```
-* Secure this application and host such that only appropriate ports are publicly exposed and any http
-requests are redirected to https. This should be automated using a configuration management tool of your
-choice and you should feel free to use a self-signed certificate for the web server.
-* Develop and apply autoamted tests to validate the correctness of the server configuration.
-Express everything in code.
-* Provide your code in an https://github.com repo named <YOUR_FIRSTNAME>_Challenge.
+4. Activate the python virtualenv.
+```
+source venv/bin/activate
+```
+5. Initialize the zappa settings.
+```
+zappa init
+```
+6. Once initialization is complete, deploy the web app.
+```
+zappa deploy <stage-name>
+```
+7. View the web app by visiting the link provided by the output of zappa deploy
+8. You can make changes to the local [app.py](https://github.com/tuxlin/Eric_Challenge/blob/main/app.py) to add additional routes or [index.tpl](https://github.com/tuxlin/Eric_Challenge/blob/main/templates/index.tpl) template and update your changes.
+```
+zappa update <stage-name>
+```
+8. Finally, you may delete the deployment.
+```
+zappa undeploy <stage-name>
+```
 
-Be prepared to walk through your code, discussing your thought process and talk through how you might
-monitor and scale this application. You should also be able to demo a running instance of the the host.
 
-## Coding
 
-Please solve the below problem using either python or go. Do not submit the answer to the web site, but put the
-solution in the repo indicated above.
-
-https://www.hackerrank.com/challenges/class-1-dealing-with-complex-numbers/problem
+ 
